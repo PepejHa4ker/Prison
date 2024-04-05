@@ -126,6 +126,19 @@ public class MinesCommands
     	
     	super.addBlockCommand( sender, mineName, block, chance );
     }
+
+	@Override
+	@Command(identifier = "mines topBlock set", permissions = "minmes.block", onlyPlayers = false,
+	description = "Set a top level block to a mine")
+	public void setTopBlockCommand(CommandSender sender,
+								   @Arg(name = "mineName", description = "The name of the mine to add the block to.")
+									   String mineName,
+								   @Arg(name = "block", description = "The block's name or ID.")
+									   String block) {
+		super.setTopBlockCommand(sender, mineName, block);
+	}
+
+
     
     
     @Override
@@ -3393,12 +3406,12 @@ public class MinesCommands
     	}
     	else {
     		
-    		mine.teleportPlayerOut( player, target );
+    		mine.teleportPlayerOut( player);
     		
     		// To "move" the player out of the mine, they are elevated by one block above the surface
     		// so need to remove the glass block if one is spawned under them.  If there is no glass
     		// block, then it will do nothing.
-    		mine.submitTeleportGlassBlockRemoval();
+//    		mine.submitTeleportGlassBlockRemoval();
     	}
     	
 

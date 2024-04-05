@@ -56,25 +56,15 @@ public class SpigotBlockSetSynchronously {
 					}
 				}
 				catch ( Exception e ) {
-					
-					if ( current != null ) {
-						
-						String blkName = current.getPrisonBlock().getBlockName();
-						PrisonBlock pBlock = current.getPrisonBlock( resetType );
-						String resetTypeBlockName = pBlock == null ? "null" : pBlock.getBlockName();
-						
-						Output.get().logError( 
-								String.format( "SpigotWorld.setBlocksSynchronously Exception: %s  resetType: %s  %s :: %s",
-										blkName, resetType.name(), resetTypeBlockName, e.getMessage() ), e );
-					}
-					else {
-						
-						Output.get().logError( 
-								String.format( "SpigotWorld.setBlocksSynchronously Exception: --noBlock--  resetType: %s  " +
-										"[unable to set 'current'] :: %s",
-										resetType.name(), e.getMessage() ), e );
-					}
-				}
+
+                    String blkName = current.getPrisonBlock().getBlockName();
+                    PrisonBlock pBlock = current.getPrisonBlock( resetType );
+                    String resetTypeBlockName = pBlock == null ? "null" : pBlock.getBlockName();
+
+                    Output.get().logError(
+                            String.format( "SpigotWorld.setBlocksSynchronously Exception: %s  resetType: %s  %s :: %s",
+                                    blkName, resetType.name(), resetTypeBlockName, e.getMessage() ), e );
+                }
 				
 				long elapsedNanos = System.nanoTime() - start;
 				

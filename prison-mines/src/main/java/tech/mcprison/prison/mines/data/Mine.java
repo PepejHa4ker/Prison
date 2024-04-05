@@ -308,9 +308,17 @@ public class Mine
  
         // When loading, skipResetBypassCount must be set to zero:
         setSkipResetBypassCount( 0 );
-        
-        
-        String rankString = (String) document.get( "rank" );
+
+		String topLeveLBlock = (String) document.get("topLevelBlock");
+
+		if (topLeveLBlock != null) {
+			PrisonBlock topLevelPrisonBlock = PrisonBlockStatusData.parseFromSaveFileFormat( topLeveLBlock );
+			setTopLevelBlock(topLevelPrisonBlock);
+
+		}
+
+
+		String rankString = (String) document.get( "rank" );
         setRank( null );
         setRankString( rankString );
         
@@ -626,7 +634,7 @@ public class Mine
         ret.put("name", getName());
         
         ret.put( "isVirtual", isVirtual() );
-
+		ret.put("topLevelBlock", getTopLevelBlock().toSaveFileFormat());
         ret.put( "tpAccessByRank", isTpAccessByRank() );
         ret.put( "mineAccessByRank", isMineAccessByRank() );
         

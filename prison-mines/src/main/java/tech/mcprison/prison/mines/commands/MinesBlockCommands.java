@@ -91,6 +91,20 @@ public class MinesBlockCommands
         //pMines.getMineManager().clearCache();
     }
 
+	private void updateMineTopLevelPrisonBlock(CommandSender sender, Mine m, PrisonBlock prisonBlock, PrisonMines pMines) {
+
+			m.setTopLevelBlock( prisonBlock );
+
+			// Check if one of the blocks is effected by gravity, and if so, set that indicator.
+			m.checkGravityAffectedBlocks();
+
+			pMines.getMineManager().saveMine( m );
+
+			pMines.getMinesMessages().getLocalizable("block_added")
+					.withReplacements(prisonBlock.getBlockName(), m.getTag()).sendTo(sender);
+
+	}
+
 	private void updateMinePrisonBlock( CommandSender sender, Mine m, PrisonBlock prisonBlock, 
 											double chance, PrisonMines pMines )
 	{
@@ -405,8 +419,49 @@ public class MinesBlockCommands
     	}
     	return results;
     }
-    
-    protected class BlockPercentTotal {
+
+	protected void setTopBlockCommand(CommandSender sender, String mineName, String block) {
+
+		if (!performCheckMineExists(sender, mineName)) {
+			return;
+		}
+
+		PrisonMines pMines = PrisonMines.getInstance();
+
+		setLastMineReferenced(mineName);
+
+		Mine m = pMines.getMine(mineName);
+
+		block = block == null ? null : block.trim().toLowerCase();
+		PrisonBlock prisonBlock = null;
+
+		PrisonBlockTypes prisonBlockTypes = Prison.get().getPlatform().getPrisonBlockTypes();
+
+		if ( block != null ) {
+			prisonBlock = prisonBlockTypes.getBlockTypesByName( block );
+		}
+
+		if ( prisonBlock == null ) {
+			pMines.getMinesMessages().getLocalizable("not_a_block").
+					withReplacements(block).sendTo(sender);
+			return;
+		}
+
+		if ( !prisonBlock.isBlock() ) {
+			pMines.getMinesMessages().getLocalizable("not_a_block").
+					withReplacements(block).sendTo(sender);
+			return;
+		}
+
+
+		updateMineTopLevelPrisonBlock( sender, m, prisonBlock, pMines );
+
+
+
+		getBlocksList(m, null, true ).send(sender);
+	}
+
+	protected class BlockPercentTotal {
     	private double totalChance = 0d;
 //    	private BlockOld oldBlock = null;
     	private PrisonBlock prisonBlock = null;

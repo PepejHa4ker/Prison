@@ -33,7 +33,16 @@ public abstract class MineData
 	public static final String MINE_NOTIFICATION_PERMISSION_PREFIX = "mines.notification.";
 	
 	private transient final ModuleElementType elementType;
-		
+	private PrisonBlock topLevelBlock = null;
+
+	public PrisonBlock getTopLevelBlock() {
+		return topLevelBlock;
+	}
+
+	public void setTopLevelBlock(PrisonBlock topLevelBlock) {
+		this.topLevelBlock = topLevelBlock;
+	}
+
 	private String name;
 	private String tag;
 	

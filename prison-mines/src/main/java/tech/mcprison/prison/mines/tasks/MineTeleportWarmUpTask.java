@@ -45,12 +45,12 @@ public class MineTeleportWarmUpTask
 		Bounds bounds = new Bounds( getLocation(), locationNew );
 		
 		if ( bounds.getDistance3d() <= getMaxDistance() ) {
-			mine.teleportPlayerOut( getPlayer(), getTarget() );
+			mine.teleportPlayerOut( getPlayer());
 			
     		// To "move" the player out of the mine, they are elevated by one block above the surface
     		// so need to remove the glass block if one is spawned under them.  If there is no glass
     		// block, then it will do nothing.
-    		mine.submitTeleportGlassBlockRemoval();
+//    		mine.submitTeleportGlassBlockRemoval();
 
     		if ( getMessageSuccess() != null && !getMessageSuccess().isEmpty() ) {
     			

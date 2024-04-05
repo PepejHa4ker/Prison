@@ -441,21 +441,14 @@ public abstract class MineReset
 	
 
     protected abstract long teleportAllPlayersOut();
-    
-    
-    public abstract void teleportPlayerOut(Player player);
-    
 
-    public abstract Location teleportPlayerOut(Player player, String targetLocation);
+    public abstract Location teleportPlayerOut(Player player);
 
 
 	public abstract Location alternativeTpLocation();
-	
-	
-	public abstract void submitTeleportGlassBlockRemoval();
-	
-	
-    /**
+
+
+	/**
      * This should be used to submit async tasks.
      * 
      * @param callbackAsync
@@ -580,7 +573,7 @@ public abstract class MineReset
 			
 			
 			// This is used to select the correct block list for the given mine level:
-			MineLevelBlockListData mineLevelBlockList = new MineLevelBlockListData( currentLevel, (Mine) this, random );
+			MineLevelBlockListData mineLevelBlockList = new MineLevelBlockListData( currentLevel, (Mine) this, random, this.getTopLevelBlock() );
 			
 			
 			for (int x = xMin; x <= xMax; x++) {
@@ -606,11 +599,18 @@ public abstract class MineReset
 					
 					// track the constraints: (obsolete)
 					//trackConstraints( currentLevel, constrainedBlocks );
-					
-					PrisonBlock prisonBlock = mineLevelBlockList.randomlySelectPrisonBlock();
-					
-//						PrisonBlock prisonBlock = randomlySelectPrisonBlock( random, currentLevel );
-					
+					PrisonBlock prisonBlock;
+					if (currentLevel == 1) {
+						PrisonBlock topLevelBlock = mineLevelBlockList.getTopLevelBlock();
+						if (topLevelBlock != null) {
+							prisonBlock = topLevelBlock;
+						} else {
+							prisonBlock = mineLevelBlockList.randomlySelectPrisonBlock();
+						}
+					} else {
+						prisonBlock = mineLevelBlockList.randomlySelectPrisonBlock();
+					}
+
 					// Increment the mine's block count. This block is one of the control blocks:
 					incrementResetBlockCount( prisonBlock );
 					
@@ -947,7 +947,7 @@ public abstract class MineReset
 //		broadcastResetMessageToAllPlayersWithRadius( MINE_RESET__BROADCAST_RADIUS_BLOCKS );
 		
 		
-		submitTeleportGlassBlockRemoval();
+//		submitTeleportGlassBlockRemoval();
 		
         
         // Tie to the command stats mode so it logs it if stats are enabled:

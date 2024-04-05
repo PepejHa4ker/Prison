@@ -9,29 +9,29 @@ import tech.mcprison.prison.internal.block.PrisonBlock;
 public class MineLevelBlockListData
 {
 
-	private int currentMineLevel;
+	private final int currentMineLevel;
 	
-	private Mine mine;
+	private final Mine mine;
 	
-	private Random random;
+	private final Random random;
 	
-	private List<PrisonBlock> selectedBlocks;
-	
+	private final List<PrisonBlock> selectedBlocks;
+
+	private final PrisonBlock topLevelBlock;
+
 	private double totalChance = 0d;
 	
 	private double selectedChance = 0d;
 	
 	private double airChance = 0d;
 
-	public MineLevelBlockListData( int currentMineLevel, Mine mine, Random random ) {
+	public MineLevelBlockListData(int currentMineLevel, Mine mine, Random random, PrisonBlock topLevelBlock) {
 		super();
-		
 		this.currentMineLevel = currentMineLevel;
 		this.mine = mine;
-		
 		this.random = random;
-		
-		this.selectedBlocks = new ArrayList<>();
+        this.topLevelBlock = topLevelBlock;
+        this.selectedBlocks = new ArrayList<>();
 		
 		initialize();
 	}
@@ -139,6 +139,10 @@ public class MineLevelBlockListData
 			}
 
 		}
+	}
+
+	public PrisonBlock getTopLevelBlock() {
+		return topLevelBlock;
 	}
 
 	public PrisonBlock randomlySelectPrisonBlock()
