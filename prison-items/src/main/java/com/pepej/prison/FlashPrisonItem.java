@@ -6,8 +6,9 @@ import com.pepej.prison.items.transform.TransformableItem;
 import com.pepej.prison.items.transform.furnace.Furnace;
 import com.pepej.prison.items.transform.registry.TransformersRegistry;
 
-import java.util.Collections;
 import java.util.List;
+
+import static java.util.Collections.singletonList;
 
 public class FlashPrisonItem extends PrisonItem implements TransformableItem {
     public FlashPrisonItem() {
@@ -25,15 +26,15 @@ public class FlashPrisonItem extends PrisonItem implements TransformableItem {
         @Override
         public List<TransformResultEntity<TransformableItem>> getResult(Furnace furnace, TransformableItem item) {
 
-            if (furnace.getName().equals("default")) {
-                return Collections.singletonList(
-                        TransformResultEntity.of(
-                                new EnergyDustPrisonItem(),
-                                5
-                        )
-                );
-            }
-            return Collections.emptyList();
+            final String name = furnace.getName();
+            int amount = (int) Math.floor(5 * furnace.getMultiplier());
+
+            return singletonList(
+                    TransformResultEntity.of(
+                            new EnergyDustPrisonItem(),
+                            amount
+                    )
+            );
         }
     }
 }

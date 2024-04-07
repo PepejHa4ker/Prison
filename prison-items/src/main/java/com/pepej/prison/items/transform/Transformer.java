@@ -7,4 +7,8 @@ public interface Transformer {
     List<TransformResultEntity<TransformableItem>> transform(TransformableItem item);
 
     String getName();
+
+    default double getMultiplier() {
+        return 1.0;
+    }
 }

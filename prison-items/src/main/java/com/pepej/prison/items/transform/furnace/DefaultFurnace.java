@@ -22,7 +22,6 @@ public class DefaultFurnace implements Furnace {
             return Collections.emptyList();
         }
         return furnaceTransformResult.getResult(this, item);
-
     }
 
 
