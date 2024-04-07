@@ -1,4 +1,4 @@
-package com.pepej.prison.items;
+package com.pepej.prison;
 
 import java.util.Objects;
 

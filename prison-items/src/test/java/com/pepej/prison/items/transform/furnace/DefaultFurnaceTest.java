@@ -7,8 +7,8 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
-import com.pepej.prison.items.FlashPrisonItem;
-import com.pepej.prison.items.PrisonItem;
+import com.pepej.prison.FlashPrisonItem;
+import com.pepej.prison.PrisonItem;
 import com.pepej.prison.items.transform.TransformableItem;
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package com.pepej.prison.items;
+package com.pepej.prison;
 
 import com.pepej.prison.items.transform.TransformResult;
 import com.pepej.prison.items.transform.TransformableItem;

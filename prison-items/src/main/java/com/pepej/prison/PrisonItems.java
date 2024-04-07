@@ -1,4 +1,4 @@
-package com.pepej.prison.items;
+package com.pepej.prison;
 
 import tech.mcprison.prison.modules.Module;
 
