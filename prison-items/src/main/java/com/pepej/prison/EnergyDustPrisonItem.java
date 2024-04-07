@@ -4,7 +4,7 @@ import com.pepej.prison.items.transform.TransformableItem;
 
 public class EnergyDustPrisonItem extends PrisonItem implements TransformableItem {
     public EnergyDustPrisonItem() {
-        super("energy_dust", "&cEnergy dust");
+        super("energy_dust", "redstone_dust", "&cEnergy dust");
     }
 
 

@@ -12,7 +12,7 @@ import static java.util.Collections.singletonList;
 
 public class FlashPrisonItem extends PrisonItem implements TransformableItem {
     public FlashPrisonItem() {
-        super("flash_item", "&cFlash");
+        super("flash_item", "flash","&cFlash");
         registerTransformers();
     }
 
