@@ -152,7 +152,7 @@ subprojects {
 		implementation 'com.google.code.gson:gson:2.10.1'
         //include(dependency('com.google.code.gson:gson:2.8.6'))
         
-        testImplementation 'junit:junit:4.12'
+        testImplementation 'junit:junit:4.13.2'
     }
 
 }

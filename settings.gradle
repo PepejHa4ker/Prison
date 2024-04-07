@@ -32,3 +32,7 @@ include 'prison-worldguard7'
 /*
 include 'prison-worldguard8'
 */
+include 'prison-cell'
+include 'prison-auc'
+include 'prison-items'
+
