@@ -1,18 +1,16 @@
 package com.pepej.prison.items.transform.furnace;
 
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-
 import com.pepej.prison.FlashPrisonItem;
 import com.pepej.prison.PrisonItem;
+import com.pepej.prison.items.transform.TransformResultEntity;
 import com.pepej.prison.items.transform.TransformableItem;
 import org.junit.Test;
 
 import java.util.List;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class DefaultFurnaceTest {
 
@@ -21,12 +19,14 @@ public class DefaultFurnaceTest {
     public void testFlashDefaultFurnaceTransform() {
         Furnace furnace = new DefaultFurnace();
         TransformableItem prisonItem = new FlashPrisonItem();
-        List<TransformableItem> transformableItems = furnace.transform(prisonItem);
+        List<TransformResultEntity<TransformableItem>> transformableItems = furnace.transform(prisonItem);
         assertEquals(1, transformableItems.size());
-        PrisonItem transformedPrisonItem = (PrisonItem) transformableItems.get(0);
+        TransformResultEntity<TransformableItem> transformResult = transformableItems.get(0);
+        PrisonItem transformedPrisonItem = (PrisonItem) transformResult.getResult();
         assertNotNull(transformedPrisonItem);
         assertEquals("energy_dust", transformedPrisonItem.getTag());
         assertEquals(1, transformedPrisonItem.getQuantity());
+        assertEquals(5, transformResult.getAmount());
 
     }
 }

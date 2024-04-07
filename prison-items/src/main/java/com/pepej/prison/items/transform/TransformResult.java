@@ -5,6 +5,6 @@ import java.util.List;
 public interface TransformResult<T> {
 
 
-    List<TransformableItem> getResult(T transformer, TransformableItem item);
+    List<TransformResultEntity<TransformableItem>> getResult(T transformer, TransformableItem item);
 
 }

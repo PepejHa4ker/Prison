@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface Transformer {
 
-    List<TransformableItem> transform(TransformableItem item);
+    List<TransformResultEntity<TransformableItem>> transform(TransformableItem item);
 
     String getName();
 }
