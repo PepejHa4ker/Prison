@@ -1,7 +1,10 @@
 package com.pepej.prison.items.transform.furnace;
 
+import com.pepej.prison.items.transform.TransformResult;
 import com.pepej.prison.items.transform.TransformableItem;
+import com.pepej.prison.items.transform.registry.TransformersRegistry;
 
+import java.util.Collections;
 import java.util.List;
 
 public class DefaultFurnace implements Furnace {
@@ -13,7 +16,12 @@ public class DefaultFurnace implements Furnace {
 
     @Override
     public List<TransformableItem> transform(TransformableItem item) {
-        return item.transformers().get(Furnace.class).getResult(this, item);
+        TransformResult<Furnace> furnaceTransformResult = TransformersRegistry.getTransformerFor(item, Furnace.class);
+        if (furnaceTransformResult == null) {
+            return Collections.emptyList();
+        }
+        return furnaceTransformResult.getResult(this, item);
+
     }
 
 

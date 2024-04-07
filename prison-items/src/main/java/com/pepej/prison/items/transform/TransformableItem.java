@@ -1,13 +1,9 @@
 package com.pepej.prison.items.transform;
 
-import com.google.common.collect.ImmutableMap;
-
-import java.util.Map;
-
 public interface TransformableItem {
 
 
-    <T extends Transformer> Map<Class<? extends Transformer>, ? extends TransformResult<T>> transformers();
+    default void registerTransformers() {}
 
     default boolean isEmpty() {
         return this == zero();
@@ -24,10 +20,6 @@ public interface TransformableItem {
 
         private ZERO() {}
 
-        @Override
-        public <T extends Transformer> ImmutableMap<Class<? extends Transformer>, TransformResult<T>> transformers() {
-            return ImmutableMap.of();
-        }
     }
 }
 
