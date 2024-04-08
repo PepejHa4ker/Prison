@@ -1,8 +1,8 @@
-package com.pepej.prison.items.transform.registry;
+package com.pepej.prison.item.transform.registry;
 
-import com.pepej.prison.items.transform.TransformerAdapter;
-import com.pepej.prison.items.transform.TransformableItem;
-import com.pepej.prison.items.transform.Transformer;
+import com.pepej.prison.item.transform.TransformerAdapter;
+import com.pepej.prison.item.transform.TransformableItem;
+import com.pepej.prison.item.transform.Transformer;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,7 +14,7 @@ public final class TransformersRegistry {
 
     private TransformersRegistry() {}
 
-    public static <T extends Transformer> void registerTransformer(
+    public static <T extends Transformer> void registerTransformerAdapter(
             TransformableItem transformableItem,
             Class<? extends T> transformerClass,
             TransformerAdapter<T> transformResult) {
@@ -24,7 +24,7 @@ public final class TransformersRegistry {
     }
 
     @SuppressWarnings("unchecked")
-    public static <T extends Transformer> TransformerAdapter<T> getTransformerFor(TransformableItem item, Class<T> transformerClass) {
+    public static <T extends Transformer> TransformerAdapter<T> getTransformerAdapterFor(TransformableItem item, Class<T> transformerClass) {
         Map<Class<?>, TransformerAdapter<?>> classTransformResultMap = map.get(item);
         if (classTransformResultMap != null) {
             TransformerAdapter<?> transformResult = classTransformResultMap.get(transformerClass);

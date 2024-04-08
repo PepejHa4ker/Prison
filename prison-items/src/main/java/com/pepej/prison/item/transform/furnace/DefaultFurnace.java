@@ -1,9 +1,9 @@
-package com.pepej.prison.items.transform.furnace;
+package com.pepej.prison.item.transform.furnace;
 
-import com.pepej.prison.items.transform.TransformerAdapter;
-import com.pepej.prison.items.transform.TransformResultEntity;
-import com.pepej.prison.items.transform.TransformableItem;
-import com.pepej.prison.items.transform.registry.TransformersRegistry;
+import com.pepej.prison.item.transform.TransformerAdapter;
+import com.pepej.prison.item.transform.TransformResultEntity;
+import com.pepej.prison.item.transform.TransformableItem;
+import com.pepej.prison.item.transform.registry.TransformersRegistry;
 
 import java.time.Duration;
 import java.util.Collections;
@@ -27,7 +27,7 @@ public class DefaultFurnace implements Furnace {
 
     @Override
     public List<TransformResultEntity<TransformableItem>> transform(TransformableItem item) {
-        TransformerAdapter<Furnace> furnaceTransformResult = TransformersRegistry.getTransformerFor(item, Furnace.class);
+        TransformerAdapter<Furnace> furnaceTransformResult = TransformersRegistry.getTransformerAdapterFor(item, Furnace.class);
         if (furnaceTransformResult == null) {
             return Collections.emptyList();
         }
@@ -87,6 +87,11 @@ public class DefaultFurnace implements Furnace {
     @Override
     public boolean canConsumeFuel(int amount) {
         return this.remainingFuel() > 0 && this.remainingFuel() >= amount;
+    }
+
+    @Override
+    public double fuelCostMultiplier() {
+        return 1.0;
     }
 }
 

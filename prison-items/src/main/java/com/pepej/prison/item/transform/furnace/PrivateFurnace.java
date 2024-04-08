@@ -1,4 +1,4 @@
-package com.pepej.prison.items.transform.furnace;
+package com.pepej.prison.item.transform.furnace;
 
 public class PrivateFurnace extends DefaultFurnace {
 
@@ -25,6 +25,11 @@ public class PrivateFurnace extends DefaultFurnace {
 
     @Override
     public double getSpeedMultiplier() {
+        return 2.0;
+    }
+
+    @Override
+    public double fuelCostMultiplier() {
         return 2.0;
     }
 }

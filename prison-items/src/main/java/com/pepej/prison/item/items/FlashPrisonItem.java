@@ -1,14 +1,12 @@
-package com.pepej.prison;
+package com.pepej.prison.item.items;
 
-import com.pepej.prison.items.transform.TransformResultEntity;
-import com.pepej.prison.items.transform.TransformableItem;
-import com.pepej.prison.items.transform.Transformer;
-import com.pepej.prison.items.transform.TransformerAdapter;
-import com.pepej.prison.items.transform.furnace.DefaultFurnace;
-import com.pepej.prison.items.transform.furnace.Furnace;
-import com.pepej.prison.items.transform.furnace.MegaFurnace;
-import com.pepej.prison.items.transform.furnace.PrivateFurnace;
-import com.pepej.prison.items.transform.registry.TransformersRegistry;
+import com.pepej.prison.PrisonItem;
+import com.pepej.prison.item.transform.TransformResultEntity;
+import com.pepej.prison.item.transform.TransformableItem;
+import com.pepej.prison.item.transform.Transformer;
+import com.pepej.prison.item.transform.TransformerAdapter;
+import com.pepej.prison.item.transform.furnace.Furnace;
+import com.pepej.prison.item.transform.registry.TransformersRegistry;
 
 import java.time.Duration;
 import java.util.List;
@@ -22,21 +20,16 @@ public class FlashPrisonItem extends PrisonItem implements TransformableItem {
         registerTransformers();
     }
 
-    @SuppressWarnings("unchecked")
     public void registerTransformers() {
-        TransformersRegistry.registerTransformer(this, Furnace.class, new FlashItemFurnaceTransformerAdapter(this));
+        TransformersRegistry.registerTransformerAdapter(this, Furnace.class, new FlashItemFurnaceTransformerAdapter(this));
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public <T extends Transformer> TransformerAdapter<T> getAdapterFor(Class<T> transformerClass) {
-        if (transformerClass == Furnace.class) {
-            return (TransformerAdapter<T>) new FlashItemFurnaceTransformerAdapter(this);
-        }
-        return null;
+        return TransformersRegistry.getTransformerAdapterFor(this, transformerClass);
     }
 
-    static class FlashItemFurnaceTransformerAdapter implements TransformerAdapter<Furnace> {
+    static final class FlashItemFurnaceTransformerAdapter implements TransformerAdapter<Furnace> {
 
         private final TransformableItem flash;
 
@@ -72,15 +65,7 @@ public class FlashPrisonItem extends PrisonItem implements TransformableItem {
 
         @Override
         public int getFuelCostFor(final Furnace transformer) {
-            switch (transformer.getName()) {
-                case DefaultFurnace.ID:
-                    return 3;
-                case PrivateFurnace.ID:
-                    return 5;
-                case MegaFurnace.ID:
-                    return 8;
-            }
-            return 0;
+            return (int) (3 * transformer.fuelCostMultiplier());
         }
     }
 

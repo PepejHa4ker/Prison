@@ -1,4 +1,4 @@
-package com.pepej.prison.items.transform;
+package com.pepej.prison.item.transform;
 
 import java.time.Duration;
 import java.util.List;

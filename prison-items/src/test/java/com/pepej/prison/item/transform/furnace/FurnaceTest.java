@@ -1,11 +1,11 @@
-package com.pepej.prison.items.transform.furnace;
+package com.pepej.prison.item.transform.furnace;
 
 
-import com.pepej.prison.FlashPrisonItem;
+import com.pepej.prison.item.items.FlashPrisonItem;
 import com.pepej.prison.PrisonItem;
-import com.pepej.prison.items.transform.TransformResultEntity;
-import com.pepej.prison.items.transform.TransformableItem;
-import com.pepej.prison.items.transform.TransformerAdapter;
+import com.pepej.prison.item.transform.TransformResultEntity;
+import com.pepej.prison.item.transform.TransformableItem;
+import com.pepej.prison.item.transform.TransformerAdapter;
 import org.junit.Test;
 
 import java.util.List;

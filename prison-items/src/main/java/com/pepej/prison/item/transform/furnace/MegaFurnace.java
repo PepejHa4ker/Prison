@@ -1,4 +1,4 @@
-package com.pepej.prison.items.transform.furnace;
+package com.pepej.prison.item.transform.furnace;
 
 public class MegaFurnace extends DefaultFurnace {
 
@@ -23,4 +23,8 @@ public class MegaFurnace extends DefaultFurnace {
         return 3.0;
     }
 
+    @Override
+    public double fuelCostMultiplier() {
+        return 3.0;
+    }
 }

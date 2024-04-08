@@ -6,16 +6,16 @@ import java.util.UUID;
 public class PrisonItem {
 
     private final UUID id;
-    private final String name;
+    private final String itemName;
     private final String tag;
     private final String displayName;
 
     private int quantity;
     private Durability durability;
 
-    public PrisonItem(String tag, final String name, String displayName) {
+    public PrisonItem(String tag, final String itemName, String displayName) {
         this.id = UUID.randomUUID();
-        this.name = name;
+        this.itemName = itemName;
         this.tag = tag;
         this.quantity = 1;
         this.displayName = displayName;
@@ -70,7 +70,7 @@ public class PrisonItem {
                 '}';
     }
 
-    public String getName() {
-        return name;
+    public String getItemName() {
+        return itemName;
     }
 }

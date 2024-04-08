@@ -1,8 +1,10 @@
-package com.pepej.prison.items.fuel;
+package com.pepej.prison.item.fuel;
 
 public interface FuelConsumer {
 
     boolean canConsumeFuel(int amount);
+
+    double fuelCostMultiplier();
 
     boolean consumeFuel(int amount);
 
