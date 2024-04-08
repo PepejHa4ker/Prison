@@ -44,7 +44,7 @@ repositories {
 dependencies {
     implementation project(':prison-core')
 
-
+    implementation("org.apache.commons:commons-lang3:3.12.0")
 
     // https://mvnrepository.com/artifact/com.github.cryptomorin/XSeries
 //	implementation 'com.github.cryptomorin:XSeries:8.5.0.1'

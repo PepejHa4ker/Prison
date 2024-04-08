@@ -1,8 +1,9 @@
 package com.pepej.prison;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Durability {
+public class Durability implements Serializable {
 
     private int max;
 
@@ -57,4 +58,5 @@ public class Durability {
     public int hashCode() {
         return Objects.hash(max, current);
     }
+
 }
