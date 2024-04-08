@@ -34,14 +34,12 @@ public class DefaultFurnace implements Furnace {
         return furnaceTransformResult.getResult(this);
     }
 
+    //127 + 10 = 128 9
     @Override
-    public boolean fillUp(final int amount) {
-        if (this.remainingFuel() + amount > this.getTankSize()) {
-            return false;
-        }
-
-        this.fuel += amount;
-        return true;
+    public int fillUp(final int amount) {
+        final int oldRemainingFuel = remainingFuel();
+        this.fuel = Math.min(this.getTankSize(), oldRemainingFuel + amount);
+        return oldRemainingFuel + amount - this.getTankSize();
     }
 
 

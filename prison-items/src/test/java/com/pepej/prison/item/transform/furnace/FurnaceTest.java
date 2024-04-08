@@ -73,4 +73,17 @@ public class FurnaceTest {
         assertEquals(1, transformedPrisonItem.getQuantity());
         assertEquals(15, transformResult.getAmount());
     }
+
+
+    @Test
+    public void testFurnaceTankFillUp() {
+        Furnace furnace = new DefaultFurnace(5);
+        assertEquals(5, furnace.remainingFuel());
+        furnace.fillUp(10);
+        assertEquals(15, furnace.remainingFuel());
+        assertEquals(128, furnace.getTankSize());
+        final int remaining = furnace.fillUp(128);
+        assertEquals(128, furnace.remainingFuel());
+        assertEquals(15, remaining);
+    }
 }
