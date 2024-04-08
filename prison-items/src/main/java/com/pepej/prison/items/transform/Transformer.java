@@ -1,5 +1,6 @@
 package com.pepej.prison.items.transform;
 
+import java.time.Duration;
 import java.util.List;
 
 public interface Transformer {
@@ -8,7 +9,15 @@ public interface Transformer {
 
     String getName();
 
-    default double getMultiplier() {
+    double getTransformProgressFor(TransformableItem item);
+
+    double getSpeedMultiplier();
+
+    void setTransformProgressFor(TransformableItem item, double progress);
+
+    Duration getTransformDurationFor(TransformableItem item);
+
+    default double getProductionMultiplier() {
         return 1.0;
     }
 }

@@ -5,6 +5,7 @@ import com.pepej.prison.FlashPrisonItem;
 import com.pepej.prison.PrisonItem;
 import com.pepej.prison.items.transform.TransformResultEntity;
 import com.pepej.prison.items.transform.TransformableItem;
+import com.pepej.prison.items.transform.TransformerAdapter;
 import org.junit.Test;
 
 import java.util.List;
@@ -25,10 +26,14 @@ public class FurnaceTest {
         TransformResultEntity<TransformableItem> transformResult = transformableItems.get(0);
         PrisonItem transformedPrisonItem = (PrisonItem) transformResult.getResult();
         assertNotNull(transformedPrisonItem);
+        assertEquals(1.0, furnace.getSpeedMultiplier(), 0.001);
+        assertEquals(1.0, furnace.getProductionMultiplier(), 0.001);
+        final TransformerAdapter<Furnace> furnaceTransformerAdapter = prisonItem.getAdapterFor(Furnace.class);
+        assertEquals(3, furnaceTransformerAdapter.getFuelCostFor(furnace));
         assertEquals(2, furnace.remainingFuel());
         assertEquals(128, furnace.getTankSize());
-        assertEquals("default", furnace.getName());
-        assertEquals(1.0, furnace.getMultiplier(), 0.001);
+        assertEquals("default_furnace", furnace.getName());
+        assertEquals(1.0, furnace.getProductionMultiplier(), 0.001);
         assertEquals("energy_dust", transformedPrisonItem.getTag());
         assertEquals(1, transformedPrisonItem.getQuantity());
         assertEquals(5, transformResult.getAmount());
@@ -45,8 +50,8 @@ public class FurnaceTest {
         TransformResultEntity<TransformableItem> transformResult = transformableItems.get(0);
         PrisonItem transformedPrisonItem = (PrisonItem) transformResult.getResult();
         assertNotNull(transformedPrisonItem);
-        assertEquals("private", furnace.getName());
-        assertEquals(2.0, furnace.getMultiplier(), 0.001);
+        assertEquals("private_furnace", furnace.getName());
+        assertEquals(2.0, furnace.getProductionMultiplier(), 0.001);
         assertEquals("energy_dust", transformedPrisonItem.getTag());
         assertEquals(1, transformedPrisonItem.getQuantity());
         assertEquals(10, transformResult.getAmount());
@@ -62,8 +67,8 @@ public class FurnaceTest {
         PrisonItem transformedPrisonItem = (PrisonItem) transformResult.getResult();
         assertNotNull(transformedPrisonItem);
         assertEquals(128,furnace.getTankSize());
-        assertEquals("mega", furnace.getName());
-        assertEquals(3.0, furnace.getMultiplier(), 0.001);
+        assertEquals("mega_furnace", furnace.getName());
+        assertEquals(3.0, furnace.getProductionMultiplier(), 0.001);
         assertEquals("energy_dust", transformedPrisonItem.getTag());
         assertEquals(1, transformedPrisonItem.getQuantity());
         assertEquals(15, transformResult.getAmount());

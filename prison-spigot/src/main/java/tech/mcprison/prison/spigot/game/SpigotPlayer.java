@@ -303,7 +303,7 @@ public class SpigotPlayer
 //    	SellAllPrisonCommands sellall = SellAllPrisonCommands.get();
 //    	
 //    	if ( sellall != null ) {
-//    		results = sellall.getMultiplier( this );
+//    		results = sellall.getProductionMultiplier( this );
 //    	}
 //    	
 //    	return results;

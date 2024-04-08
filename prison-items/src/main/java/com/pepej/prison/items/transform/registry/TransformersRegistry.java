@@ -1,6 +1,6 @@
 package com.pepej.prison.items.transform.registry;
 
-import com.pepej.prison.items.transform.TransformResult;
+import com.pepej.prison.items.transform.TransformerAdapter;
 import com.pepej.prison.items.transform.TransformableItem;
 import com.pepej.prison.items.transform.Transformer;
 
@@ -9,7 +9,7 @@ import java.util.Map;
 
 public final class TransformersRegistry {
 
-    private static final Map<TransformableItem, Map<Class<?>, TransformResult<?>>> map = new HashMap<>();
+    private static final Map<TransformableItem, Map<Class<?>, TransformerAdapter<?>>> map = new HashMap<>();
 
 
     private TransformersRegistry() {}
@@ -17,18 +17,18 @@ public final class TransformersRegistry {
     public static <T extends Transformer> void registerTransformer(
             TransformableItem transformableItem,
             Class<? extends T> transformerClass,
-            TransformResult<T> transformResult) {
-        Map<Class<?>, TransformResult<?>> transformerMap = new HashMap<>();
+            TransformerAdapter<T> transformResult) {
+        Map<Class<?>, TransformerAdapter<?>> transformerMap = new HashMap<>();
         transformerMap.put(transformerClass, transformResult);
         map.put(transformableItem, transformerMap);
     }
 
     @SuppressWarnings("unchecked")
-    public static <T extends Transformer> TransformResult<T> getTransformerFor(TransformableItem item, Class<T> transformerClass) {
-        Map<Class<?>, TransformResult<?>> classTransformResultMap = map.get(item);
+    public static <T extends Transformer> TransformerAdapter<T> getTransformerFor(TransformableItem item, Class<T> transformerClass) {
+        Map<Class<?>, TransformerAdapter<?>> classTransformResultMap = map.get(item);
         if (classTransformResultMap != null) {
-            TransformResult<?> transformResult = classTransformResultMap.get(transformerClass);
-            return (TransformResult<T>) transformResult;
+            TransformerAdapter<?> transformResult = classTransformResultMap.get(transformerClass);
+            return (TransformerAdapter<T>) transformResult;
         }
         return null;
 

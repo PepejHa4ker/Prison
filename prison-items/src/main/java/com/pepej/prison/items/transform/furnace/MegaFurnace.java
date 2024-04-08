@@ -2,17 +2,25 @@ package com.pepej.prison.items.transform.furnace;
 
 public class MegaFurnace extends DefaultFurnace {
 
+    public static final String ID = "mega_furnace";
+
     public MegaFurnace(final int fuel) {
         super(fuel);
     }
 
     @Override
     public String getName() {
-        return "mega";
+        return ID;
     }
 
     @Override
-    public double getMultiplier() {
+    public double getProductionMultiplier() {
         return 3.0;
     }
+
+    @Override
+    public double getSpeedMultiplier() {
+        return 3.0;
+    }
+
 }
