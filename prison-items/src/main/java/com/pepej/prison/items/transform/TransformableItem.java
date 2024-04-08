@@ -5,6 +5,10 @@ public interface TransformableItem {
 
     default void registerTransformers() {}
 
+    default int getFuelCostFor(Transformer transformer) {
+        return 0;
+    }
+
     default boolean isEmpty() {
         return this == zero();
     }
